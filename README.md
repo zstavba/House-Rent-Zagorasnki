@@ -17,12 +17,12 @@ The project is still not finished but i will post update within the creation of 
 
 
 ## What will the project include:
- -- Admin Login
- -- User dashboard with:
-   --> Managing payments list, where u can see al the payments of he pearson who rent an apparmtent.
-   --> U will be connected with STRIPE Framewrok where it allows you to manage payments for you. 
-   --> List off all apartments.
-   --> User settings, just the basic information (Updateing profile picture, Changeing you're password, Add a credit card to the sistem, where u can recive the payments from other memebers).
+ - Admin Login
+ - User dashboard with:
+   -- Managing payments list, where u can see al the payments of he pearson who rent an apparmtent.
+   -- U will be connected with STRIPE Framewrok where it allows you to manage payments for you. 
+   -- List off all apartments.
+   -- User settings, just the basic information (Updateing profile picture, Changeing you're password, Add a credit card to the sistem, where u can recive the payments from other memebers).
    
    Form any problems, u can contact me on github, by just searching my username @zstavba or just send an email to zanstavbar057@gmail.com
    
