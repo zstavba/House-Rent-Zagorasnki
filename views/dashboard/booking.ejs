@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>House Rent zagoranski / Admin </title>
+    <link rel="stylesheet" href="/css/tailwind.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body  style="background-color:#e9eaed ;">
+    <%- include('./components/navbar', {user:  userData}) %>
+    <div aria-live="assertive" class="fixed inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start z-50 successMessage hidden">
+        <div class="w-full flex flex-col items-center space-y-4 sm:items-end">
+          <div class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+            <div class="p-4">
+              <div class="flex items-start">
+                <div class="flex-shrink-0 py-3">
+                  <!-- Heroicon name: outline/check-circle -->
+                  <svg class="h-6 w-6 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div class="ml-3 w-0 flex-1 pt-0.5">
+                  <p class="text-sm font-medium text-green-900">Successfully saved!</p>
+                  <p class="mt-1 text-sm text-gray-500 sm-text"></p>
+                </div>
+                <div class="ml-4 flex-shrink-0 flex">
+                  <button type="button" class="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <span class="sr-only">Close</span>
+                    <!-- Heroicon name: solid/x -->
+                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div aria-live="assertive" class="fixed inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start z-50  errorMessage hidden">
+        <div class="w-full flex flex-col items-center space-y-4 sm:items-end">
+          <div class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+            <div class="p-4">
+              <div class="flex items-start">
+                <div class="flex-shrink-0 py-3">
+                  <!-- Heroicon name: outline/check-circle -->
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div class="ml-3 w-0 flex-1 pt-0.5">
+                  <p class="text-sm font-medium text-red-900">Sistemska sporočila !</p>
+                  <p class="mt-1 text-sm text-gray-500 em-text"></p>
+                </div>
+                <div class="ml-4 flex-shrink-0 flex">
+                  <button type="button" class="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <span class="sr-only">Close</span>
+                    <!-- Heroicon name: solid/x -->
+                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="relative homeSLide ">
+        <div class="grid sm:grid-cols-5 grid-cols-1">
+            <%- include('./components/sidebar')  %>
+            <div class="col-span-4">
+                <%- include('./components/createNews') %>
+                <div class="dashboardColor bg-gray-800 h-40 w-full">
+                    <div class="grid grid-cols-2 py-4 sm:px-8 px-2">
+                        <div class="text-white text-4xl py-1.5">Booking List</div>
+                        <!-- This example requires Tailwind CSS v2.0+ -->
+                        <div class="text-right">
+                            <nav class="flex float-right" aria-label="Breadcrumb">
+                                <ol role="list" class="bg-white rounded-md shadow px-6 flex space-x-4">
+                                    <li class="flex">
+                                        <div class="flex items-center">
+                                          <a href="#" class="text-gray-400 hover:text-gray-500">
+                                            <!-- Heroicon name: solid/home -->
+                                            <svg class="flex-shrink-0 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                                            </svg>
+                                            <span class="sr-only">Home</span>
+                                          </a>
+                                        </div>
+                                      </li>
+                                  
+                                      <li class="flex">
+                                        <div class="flex items-center">
+                                          <svg class="flex-shrink-0 w-6 h-full text-gray-200" viewBox="0 0 24 44" preserveAspectRatio="none" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                            <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
+                                          </svg>
+                                          <a href="#" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">Booking</a>
+                                        </div>
+                                      </li>
+                                </ol>
+                              </nav>
+                        </div>
+  
+                    </div>
+                </div>
+                <div class="sm:px-10 px-4 -mt-14">
+                    <div class="w-full bg-white rounded shadow-lg shadow-gray-500/50 h-screen">
+                        <div class="grid sm:grid-cols-2 grid-cols-1 gap-4 p-1 border-b border-gray-400">
+                            <div class="text-gray-500 font-medium px-2">
+                                <div class="font-bold">Seznam apartmajev</div>
+                                <div class="font-thin">Prikazanih 0-20 od 150 novic</div>
+                            </div>
+                            <div class="grid grid-cols-2">
+                                <div class="py-1">
+                                    <div class="mt-1 relative flex items-center">
+                                      <input type="text" name="search" id="search" placeholder="Iskanje med novicami ..." class="shadow-sm p-2 border border-gray-100 focus:ring-indigo-500 focus:border-indigo-500 block w-full pr-12 sm:text-sm border-gray-300 rounded-md">
+                                      <div class="absolute inset-y-0 right-0 flex py-1.5 pr-1.5">
+                                        <kbd class="inline-flex items-center border border-gray-200 rounded px-2 text-sm font-sans font-medium text-gray-400"> ⌘K </kbd>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="text-right p-1.5">
+                                    <button type="button" class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                          </svg>
+                                    </button>
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="py-4 px-5">
+                            <div class="w-full grid sm:grid-cols-3 grid-cols-1 relative gap-4">
+                                <img src="https://techydevs.com/demos/themes/html/trizen-demo/trizen/images/img1.jpg" class="rounded shadow shadow-gray-700/50">
+                                <div>
+                                    <div class="text-gray-700 font-bold text-xl">
+                                        Hotel Malte – Astotel
+                                    </div>
+                                    <table class="table">
+                                        <tr class="text-gray-500">
+                                            <td class="font-bold whitespace-nowrap sm:py-4 sm:pl-4 py-2 pl-2 pr-3">Začetek obratovanja</td>
+                                            <td class="whitespace-nowrap sm:py-4 sm:pl-4 py-2 pl-2 pr-3">03 Avgust 2022</td>
+                                        </tr>
+                                        <tr class="text-gray-500">
+                                            <td class="font-bold whitespace-nowrap sm:py-4 sm:pl-4 py-2 pl-2 pr-3">Maximalno število oseb</td>
+                                            <td class="whitespace-nowrap sm:py-4 sm:pl-4 py-2 pl-2 pr-3">12</td>
+                                        </tr>
+                                        <tr class="text-gray-500">
+                                            <td class="font-bold whitespace-nowrap sm:py-4 sm:pl-4 py-2 pl-2 pr-3">Lokacija</td>
+                                            <td class="whitespace-nowrap sm:py-4 sm:pl-4 py-2 pl-2 pr-3">Ptuj</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="text-right sm:relative absolute top-5 right-5">
+                                    <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-green-700 bg-green-100 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Odobri</button>
+                                    <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Spremeni</button>
+                                    <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Zavrni</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/editor.js" type="module"></script>
+
+
+</body>
+</html>

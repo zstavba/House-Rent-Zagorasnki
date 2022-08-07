@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>House Rent zagoranski / Admin </title>
+    <link rel="stylesheet" href="/css/tailwind.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/js/userSettings.js"></script>
+</head>
+<body  style="background-color:#e9eaed ;">
+    <%- include('./components/navbar', {user:  userData}) %>
+    <div aria-live="assertive" class="fixed inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start z-50 successMessage hidden">
+        <div class="w-full flex flex-col items-center space-y-4 sm:items-end">
+          <div class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+            <div class="p-4">
+              <div class="flex items-start">
+                <div class="flex-shrink-0 py-3">
+                  <!-- Heroicon name: outline/check-circle -->
+                  <svg class="h-6 w-6 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div class="ml-3 w-0 flex-1 pt-0.5">
+                  <p class="text-sm font-medium text-green-900">Successfully saved!</p>
+                  <p class="mt-1 text-sm text-gray-500 sm-text"></p>
+                </div>
+                <div class="ml-4 flex-shrink-0 flex">
+                  <button type="button" class="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <span class="sr-only">Close</span>
+                    <!-- Heroicon name: solid/x -->
+                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div aria-live="assertive" class="fixed inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start z-50  errorMessage hidden">
+        <div class="w-full flex flex-col items-center space-y-4 sm:items-end">
+          <div class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+            <div class="p-4">
+              <div class="flex items-start">
+                <div class="flex-shrink-0 py-3">
+                  <!-- Heroicon name: outline/check-circle -->
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div class="ml-3 w-0 flex-1 pt-0.5">
+                  <p class="text-sm font-medium text-red-900">Sistemska sporočila !</p>
+                  <p class="mt-1 text-sm text-gray-500 em-text"></p>
+                </div>
+                <div class="ml-4 flex-shrink-0 flex">
+                  <button type="button" class="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <span class="sr-only">Close</span>
+                    <!-- Heroicon name: solid/x -->
+                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="relative homeSLide ">
+        <div class="grid sm:grid-cols-5 grid-cols-1">
+            <%- include('./components/sidebar')  %>
+            <div class="col-span-4">
+                <%- include('./components/createNews') %>
+                <div class="dashboardColor bg-gray-800 h-40 w-full">
+                    <div class="grid grid-cols-2 py-4 sm:px-8 px-2">
+                        <div class="text-white text-4xl py-1.5">User Settings</div>
+                        <!-- This example requires Tailwind CSS v2.0+ -->
+                        <div class="text-right">
+                            <nav class="flex float-right" aria-label="Breadcrumb">
+                                <ol role="list" class="bg-white rounded-md shadow px-6 flex space-x-4">
+                                    <li class="flex">
+                                        <div class="flex items-center">
+                                          <a href="#" class="text-gray-400 hover:text-gray-500">
+                                            <!-- Heroicon name: solid/home -->
+                                            <svg class="flex-shrink-0 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                                            </svg>
+                                            <span class="sr-only">Home</span>
+                                          </a>
+                                        </div>
+                                      </li>
+                                  
+                                      <li class="flex">
+                                        <div class="flex items-center">
+                                          <svg class="flex-shrink-0 w-6 h-full text-gray-200" viewBox="0 0 24 44" preserveAspectRatio="none" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                            <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
+                                          </svg>
+                                          <a href="/dashboard/booking/orders" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">Uporabnik</a>
+                                        </div>
+                                      </li>
+                                      <li class="flex">
+                                        <div class="flex items-center">
+                                          <svg class="flex-shrink-0 w-6 h-full text-gray-200" viewBox="0 0 24 44" preserveAspectRatio="none" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                            <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
+                                          </svg>
+                                          <a href="#" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">Nastavitve</a>
+                                        </div>
+                                      </li>
+                                </ol>
+                              </nav>
+                        </div>
+  
+                    </div>
+                </div>
+                <div class="sm:px-10 px-4 -mt-14 grid grid-cols-2 gap-4">
+                    <div class="bg-white rounded">
+                        <div class="p-3 border-b border-gray-500 text-gray-700 font-bold text-xl">
+                            Sprememba profilne slike
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-4 p-4">
+                            <img src="<%- userData.profile_image %>" class="rounded shadow shadow-gray-700/50" style="height: 201px;">
+                            <div class="col-span-2">
+                                <label type="button" for="change_profile_image" class="w-full flex items-left px-4 py-2 border border-gray-300 shadow-sm text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                    <span>Izberite profilno sliko</span>
+                                </label>
+                                <input type="file" name="file" id="change_profile_image" class="hidden" onchange="getImage(event)">
+                                <div class="w-full rounded flex items-center px-12 text-center border border-gray-500 rounded text-gray-600 my-2" style="height: 150px;">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                  </svg>
+                                  <div>
+                                    Profilna slika ni izbrana
+                                  </div>
+                                </div>
+                                <img src="" class="w-full  rouned image_preview hidden my-2 rounded shadow shadow-gray-700/50" style="height: 150px;">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 p-3">
+                            <button type="button" class="text-center saveImage  px-4 py-2 border border-transparent text-sm font-medium rounded-md text-green-700 bg-green-100 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                Shrani 
+                            </button>
+                            <button type="button" class="text-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                Prekliči
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded">
+                        <div class="p-3 border-b border-gray-500 text-gray-700 font-bold text-xl">
+                            Sprememba osnovnih  podatkov
+                        </div>
+                        <div class="p-3">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label for="first_name" class="block text-sm font-medium text-gray-700">Ime</label>
+                                    <div class="mt-1">
+                                      <input type="text" name="first_name" id="first_name" value="<%= userData.first_name %>" class="first_name shadow-sm p-2 border border-gray-500 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="last_name" class="block text-sm font-medium text-gray-700">Priimek</label>
+                                    <div class="mt-1">
+                                        <input type="text" name="last_name" id="last_name" value="<%= userData.last_name %>" class="last_name shadow-sm p-2 border border-gray-500 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="py-3">
+                                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                                <div class="mt-1">
+                                    <input type="text" name="email" id="email" value="<%= userData.email %>" class="email shadow-sm p-2 border border-gray-500 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                                </div>
+                            </div>
+                            <div class="py-3">
+                                <label for="sex" class="block text-sm font-medium text-gray-700">Spol</label>
+                                <div class="mt-1">
+                                  <select id="sex" name="sex" class="sex mt-1 block w-full pl-3 pr-10 py-2 text-base p-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                    <option selected>Izberite spol</option>
+                                    <option value="male">Moški</option>
+                                    <option value="female">Ženski</option>
+                                  </select>                                
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <button type="button" class="text-center saveData px-4 py-2 border border-transparent text-sm font-medium rounded-md text-green-700 bg-green-100 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    Shrani 
+                                </button>
+                                <button type="button" class="text-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    Prekliči
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sm:px-10 px-4  grid grid-cols-2 gap-4 my-4">
+                    <div class="bg-white rounded">
+                        <div class="p-3 border-b border-gray-500 text-gray-700 font-bold text-xl">
+                            Sprememba gesla
+                        </div>
+                        <div class="p-3">
+                            <div class="grid grid-cols-2 gap-4 my-2">
+                                <div>
+                                    <label for="old_password" class="block text-sm font-medium text-gray-700">Staro geslo</label>
+                                    <div class="mt-1">
+                                      <input type="password" name="old_password" id="old_password" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm p-2 border border-gray-300 rounded-md" placeholder="Vnesite vaše staro geslo">
+                                    </div>
+                                  </div>
+                                  <div>
+                                    <label for="new_password" class="block text-sm font-medium text-gray-700">Novo geslo</label>
+                                    <div class="mt-1">
+                                      <input type="password" name="new_password" id="new_password" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm p-2 border border-gray-300 rounded-md" placeholder="Vnesite vaše novo geslo">
+                                    </div>
+                                  </div>
+                            </div>
+                            <div>
+                                <label for="new_password_repeat" class="block text-sm font-medium text-gray-700">Ponovno vnesi novo geslo</label>
+                                <div class="mt-1">
+                                  <input type="password" name="new_password_repeat" id="new_password_repeat" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm p-2 border border-gray-300 rounded-md" placeholder="Za potrditev vnesite ponovno vaše novo geslo">
+                                </div>
+                              </div>
+                        </div>          
+                        <div class="grid grid-cols-2 gap-4 p-3">
+                            <button type="button" class="text.center  px-4 py-2 border border-transparent text-sm font-medium rounded-md text-green-700 bg-green-100 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                Shrani 
+                            </button>
+                            <button type="button" class="text-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                Prekliči
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded">
+                        <div class="p-3 border-b border-gray-500 text-gray-700 font-bold text-xl">
+                            Podatki plačilne kartice za prejem nakazil
+                        </div>
+                        <div class="p-3">
+                            <fieldset>
+                              <legend class="block text-sm font-medium text-gray-700">Podatki kartice</legend>
+                              <div class="mt-1 bg-white rounded-md shadow-sm -space-y-px">
+                                <div>
+                                  <label for="card-number" class="sr-only">Card number</label>
+                                  <input type="text" name="card-number" id="card-number" class="focus:ring-indigo-500 focus:border-indigo-500 relative block w-full rounded-none rounded-t-md bg-transparent focus:z-10 sm:text-sm p-2 border border-gray-300" placeholder="Card number">
+                                </div>
+                                <div class="flex -space-x-px">
+                                  <div class="w-1/2 flex-1 min-w-0">
+                                    <label for="card-expiration-date" class="sr-only">Expiration date</label>
+                                    <input type="text" name="card-expiration-date" id="card-expiration-date" class="focus:ring-indigo-500 focus:border-indigo-500 relative block w-full rounded-none rounded-bl-md bg-transparent focus:z-10 sm:text-sm p-2 border border-gray-300" placeholder="MM / YY">
+                                  </div>
+                                  <div class="flex-1 min-w-0">
+                                    <label for="card-cvc" class="sr-only">CVC</label>
+                                    <input type="text" name="card-cvc" id="card-cvc" class="focus:ring-indigo-500 focus:border-indigo-500 relative block w-full rounded-none rounded-br-md bg-transparent focus:z-10 sm:text-sm p-2 border border-gray-300" placeholder="CVC">
+                                  </div>
+                                </div>
+                              </div>
+                            </fieldset>
+                            <fieldset class="mt-6 bg-white">
+                              <legend class="block text-sm font-medium text-gray-700">Podatki naslovnika / naslov</legend>
+                              <div class="mt-1 rounded-md shadow-sm -space-y-px">
+                                <div>
+                                  <label for="country" class="sr-only">Country</label>
+                                  <select id="country" name="country" autocomplete="country-name" class="focus:ring-indigo-500 focus:border-indigo-500 relative block w-full rounded-none rounded-t-md bg-transparent focus:z-10 sm:text-sm p-2 border border-gray-300">
+                                    <option>United States</option>
+                                    <option>Canada</option>
+                                    <option>Mexico</option>
+                                  </select>
+                                </div>
+                                <div>
+                                  <label for="postal-code" class="sr-only">ZIP / Postal code</label>
+                                  <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code" class="focus:ring-indigo-500 focus:border-indigo-500 relative block w-full rounded-none rounded-b-md bg-transparent focus:z-10 sm:text-sm p-2 border border-gray-300" placeholder="ZIP / Postal code">
+                                </div>
+                              </div>
+                            </fieldset>
+                          </div>     
+                        <div class="grid grid-cols-2 gap-4 p-3">
+                            <button type="button" class="text.center  px-4 py-2 border border-transparent text-sm font-medium rounded-md text-green-700 bg-green-100 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                Shrani 
+                            </button>
+                            <button type="button" class="text-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                Prekliči
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/editor.js" type="module"></script>
+
+
+</body>
+</html>

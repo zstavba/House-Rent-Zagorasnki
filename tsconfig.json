@@ -1,0 +1,14 @@
+{
+    "extends": "@tsconfig/node16/tsconfig.json",
+    "compilerOptions": {
+        "strict": true,
+        "target": "es6",
+        "useUnknownInCatchVariables": false,
+        "lib": [
+            "es2016",
+            "dom"
+        ]
+    },
+    "include": ["**/*.ts", "**/*.tsx","**/*.ejs", "**/*.ejs", "public/js/editor.js"],
+    "exclude": ["node_modules"]
+  }

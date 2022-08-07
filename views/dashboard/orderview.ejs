@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>House Rent zagoranski / Admin </title>
+    <link rel="stylesheet" href="/css/tailwind.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body  style="background-color:#e9eaed ;">
+    <%- include('./components/navbar', {user:  userData}) %>
+    <div aria-live="assertive" class="fixed inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start z-50 successMessage hidden">
+        <div class="w-full flex flex-col items-center space-y-4 sm:items-end">
+          <div class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+            <div class="p-4">
+              <div class="flex items-start">
+                <div class="flex-shrink-0 py-3">
+                  <!-- Heroicon name: outline/check-circle -->
+                  <svg class="h-6 w-6 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div class="ml-3 w-0 flex-1 pt-0.5">
+                  <p class="text-sm font-medium text-green-900">Successfully saved!</p>
+                  <p class="mt-1 text-sm text-gray-500 sm-text"></p>
+                </div>
+                <div class="ml-4 flex-shrink-0 flex">
+                  <button type="button" class="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <span class="sr-only">Close</span>
+                    <!-- Heroicon name: solid/x -->
+                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div aria-live="assertive" class="fixed inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start z-50  errorMessage hidden">
+        <div class="w-full flex flex-col items-center space-y-4 sm:items-end">
+          <div class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+            <div class="p-4">
+              <div class="flex items-start">
+                <div class="flex-shrink-0 py-3">
+                  <!-- Heroicon name: outline/check-circle -->
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div class="ml-3 w-0 flex-1 pt-0.5">
+                  <p class="text-sm font-medium text-red-900">Sistemska sporočila !</p>
+                  <p class="mt-1 text-sm text-gray-500 em-text"></p>
+                </div>
+                <div class="ml-4 flex-shrink-0 flex">
+                  <button type="button" class="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <span class="sr-only">Close</span>
+                    <!-- Heroicon name: solid/x -->
+                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="relative homeSLide ">
+        <div class="grid sm:grid-cols-5 grid-cols-1">
+            <%- include('./components/sidebar')  %>
+            <div class="col-span-4">
+                <%- include('./components/createNews') %>
+                <div class="dashboardColor bg-gray-800 h-40 w-full">
+                    <div class="grid grid-cols-2 py-4 sm:px-8 px-2">
+                        <div class="text-white text-4xl py-1.5">Order View</div>
+                        <!-- This example requires Tailwind CSS v2.0+ -->
+                        <div class="text-right">
+                            <nav class="flex float-right" aria-label="Breadcrumb">
+                                <ol role="list" class="bg-white rounded-md shadow px-6 flex space-x-4">
+                                    <li class="flex">
+                                        <div class="flex items-center">
+                                          <a href="#" class="text-gray-400 hover:text-gray-500">
+                                            <!-- Heroicon name: solid/home -->
+                                            <svg class="flex-shrink-0 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                                            </svg>
+                                            <span class="sr-only">Home</span>
+                                          </a>
+                                        </div>
+                                      </li>
+                                  
+                                      <li class="flex">
+                                        <div class="flex items-center">
+                                          <svg class="flex-shrink-0 w-6 h-full text-gray-200" viewBox="0 0 24 44" preserveAspectRatio="none" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                            <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
+                                          </svg>
+                                          <a href="/dashboard/booking/orders" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">Naročila</a>
+                                        </div>
+                                      </li>
+                                      <li class="flex">
+                                        <div class="flex items-center">
+                                          <svg class="flex-shrink-0 w-6 h-full text-gray-200" viewBox="0 0 24 44" preserveAspectRatio="none" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                            <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
+                                          </svg>
+                                          <a href="#" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">Predogled</a>
+                                        </div>
+                                      </li>
+                                </ol>
+                              </nav>
+                        </div>
+  
+                    </div>
+                </div>
+                <div class="sm:px-10 px-4 -mt-14">
+                    <div class="w-full bg-white rounded shadow-lg shadow-gray-500/50 h-a">
+                        <div class="p-4 text-gray-700 font-bold border-b border-gray-400">
+                            Predogled naročila ID: 
+                        </div>
+                        <div class="py-4 px-5">
+                            <table class="table text-left">
+                                <tr>
+                                    <th class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Naročilo ID #</th>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">11541689164</td>
+                                </tr>
+                                <tr>
+                                    <th class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Naziv naročila </th>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Hotel Malte – Astotel</td>
+                                </tr>
+                                <tr>
+                                    <th class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Trajanje </th>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">5 Avgust 2022 - 15 Avgust 2022</td>
+                                </tr>
+                                <tr>
+                                    <th class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Ime naročnika </th>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                        <a href="#" class="flex-shrink-0 group block">
+                                            <div class="flex items-center">
+                                              <div>
+                                                <img class="inline-block h-9 w-9 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                                              </div>
+                                              <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900">Žan Stavbar</p>
+                                                <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">Ogled profila</p>
+                                              </div>
+                                            </div>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Email naročnika </th>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">zanstavbar057@gmail.com</td>
+                                </tr>
+                                <tr>
+                                    <th class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Telefonska številka naročnika </th>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">+386 69 603 253</td>
+                                </tr>
+                                <tr>
+                                    <th class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Naslov naročnika </th>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Kopivnik 26B, 2313 Fram</td>
+                                </tr>
+                                <tr>
+                                    <th class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Kraj naročnika </th>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Fram</td>
+                                </tr>
+                                <tr>
+                                    <th class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Število odraslih </th>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2</td>
+                                </tr>
+                                <tr>
+                                    <th class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Število otrok </th>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1</td>
+                                </tr>
+                                <tr>
+                                    <th class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Skupen izračun </th>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">950 €</td>
+                                </tr>
+                                <tr>
+                                    <th class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Način plačila </th>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">PayPal</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="py-4 px-5">
+                            <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Natisni</button>
+                            <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-green-700 bg-green-100 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Pošlji stranki</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/editor.js" type="module"></script>
+
+
+</body>
+</html>

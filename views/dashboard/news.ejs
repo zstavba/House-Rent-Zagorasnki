@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>House Rent zagoranski / Admin </title>
+    <link rel="stylesheet" href="/css/tailwind.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        $(document).ready(() => {
+            $('.openUserMenu').click(() => {
+                let  menu = $('.userMenu');
+                if(menu.hasClass("hidden")){
+                    menu.removeClass("hidden");
+                }else{
+                    menu.addClass("hidden");
+                }
+
+            });
+
+            $('.openNewsModal').click(() => {
+                let newsModal = $('.newsModal');
+                if(newsModal.hasClass("hidden")){
+                    newsModal.removeClass("hidden");
+                } else{
+                    newsModal.addClass("hidden");
+                }
+            });
+            $('.deleteButton').on("click",(event) => {
+                var newsid = $(event.currentTarget).data("newsid");
+                $.ajax({
+                    method:"POST",
+                    url:"/dashboard/news/delete/"+newsid,
+                    error: (response) => {
+                        $('.errorMessage').fadeIn();
+                        $('.errorMessage .em-text').html(response.message);
+                        setTimeout(() => {
+                            $('.errorMessage').fadeOut();
+                            $('.errorMessage .em-text').html();
+                        },4000);
+                    }
+                }).done((response) => {
+                    $('.successMessage').fadeIn();
+                    $('.successMessage .sm-text').html(response.message);
+                    setTimeout(() => {
+                        $('.successMessage').fadeOut();
+                        $('.successMessage .sm-text').html();
+                        window.location.reload;
+                    },4000);
+                })
+            });
+        });
+    </script>
+    
+
+</head>
+<body  style="background-color:#e9eaed ;">
+    <%- include('./components/navbar', {user:  userData}) %>
+    <div aria-live="assertive" class="fixed inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start z-50 successMessage hidden">
+        <div class="w-full flex flex-col items-center space-y-4 sm:items-end">
+          <div class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+            <div class="p-4">
+              <div class="flex items-start">
+                <div class="flex-shrink-0 py-3">
+                  <!-- Heroicon name: outline/check-circle -->
+                  <svg class="h-6 w-6 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div class="ml-3 w-0 flex-1 pt-0.5">
+                  <p class="text-sm font-medium text-green-900">Successfully saved!</p>
+                  <p class="mt-1 text-sm text-gray-500 sm-text"></p>
+                </div>
+                <div class="ml-4 flex-shrink-0 flex">
+                  <button type="button" class="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <span class="sr-only">Close</span>
+                    <!-- Heroicon name: solid/x -->
+                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div aria-live="assertive" class="fixed inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start z-50  errorMessage hidden">
+        <div class="w-full flex flex-col items-center space-y-4 sm:items-end">
+          <div class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+            <div class="p-4">
+              <div class="flex items-start">
+                <div class="flex-shrink-0 py-3">
+                  <!-- Heroicon name: outline/check-circle -->
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div class="ml-3 w-0 flex-1 pt-0.5">
+                  <p class="text-sm font-medium text-red-900">Sistemska sporočila !</p>
+                  <p class="mt-1 text-sm text-gray-500 em-text"></p>
+                </div>
+                <div class="ml-4 flex-shrink-0 flex">
+                  <button type="button" class="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <span class="sr-only">Close</span>
+                    <!-- Heroicon name: solid/x -->
+                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="relative homeSLide ">
+        <div class="grid sm:grid-cols-5 grid-cols-1">
+            <%- include('./components/sidebar')  %>
+            <div class="col-span-4">
+                <%- include('./components/createNews') %>
+                <div class="dashboardColor bg-gray-800 h-40 w-full">
+                    <div class="grid grid-cols-2 py-4 sm:px-8 px-2">
+                        <div class="text-white text-4xl py-1.5">News</div>
+                        <!-- This example requires Tailwind CSS v2.0+ -->
+                        <div class="text-right">
+                            <nav class="flex float-right" aria-label="Breadcrumb">
+                                <ol role="list" class="bg-white rounded-md shadow px-6 flex space-x-4">
+                                    <li class="flex">
+                                        <div class="flex items-center">
+                                          <a href="#" class="text-gray-400 hover:text-gray-500">
+                                            <!-- Heroicon name: solid/home -->
+                                            <svg class="flex-shrink-0 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                                            </svg>
+                                            <span class="sr-only">Home</span>
+                                          </a>
+                                        </div>
+                                      </li>
+                                  
+                                      <li class="flex">
+                                        <div class="flex items-center">
+                                          <svg class="flex-shrink-0 w-6 h-full text-gray-200" viewBox="0 0 24 44" preserveAspectRatio="none" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                            <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
+                                          </svg>
+                                          <a href="#" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">Novice</a>
+                                        </div>
+                                      </li>
+                                </ol>
+                              </nav>
+                        </div>
+  
+                    </div>
+                </div>
+                <div class="sm:px-10 px-5 -mt-14">
+                    <div class="w-full bg-white rounded shadow-lg shadow-gray-500/50 h-a">
+                        <div class="grid sm:grid-cols-2 grid-cols-1 gap-4 p-1 border-b border-gray-400">
+                            <div class="text-gray-500 font-medium px-2">
+                                <div class="font-bold">Seznam vseh novic</div>
+                                <div class="font-thin">Prikazanih 0-20 od 150 novic</div>
+                            </div>
+                            <div class="grid grid-cols-2">
+                                <div class="py-1">
+                                    <div class="mt-1 relative flex items-center">
+                                      <input type="text" name="search" id="search" placeholder="Iskanje med novicami ..." class="shadow-sm p-2 border border-gray-100 focus:ring-indigo-500 focus:border-indigo-500 block w-full pr-12 sm:text-sm border-gray-300 rounded-md">
+                                      <div class="absolute inset-y-0 right-0 flex py-1.5 pr-1.5">
+                                        <kbd class="inline-flex items-center border border-gray-200 rounded px-2 text-sm font-sans font-medium text-gray-400"> ⌘K </kbd>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="text-right p-1.5">
+                                    <div class="relative z-0 inline-flex shadow-sm rounded-md py-0.5 ml-2">
+                                        <button type="button" class="openNewsModal relative inline-flex items-center p-2 rounded-l-md border border-sky-300 bg-white text-sm font-medium text-sky-700 hover:bg-sky-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                                 stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                          </svg>
+                                        </button>
+                                        <button type="button" class="-ml-px relative inline-flex items-center p-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                                 stroke="currentColor" stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                      d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                                            </svg>
+                                          </button>
+                                        <button type="button" class="-ml-px relative inline-flex items-center p-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                                 stroke="currentColor" stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                      d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+                                            </svg>
+                                          </button>
+                                      </div>
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="grid sm:grid-cols-4 grid-cols-1 gap-4 py-4 px-5">
+                            <% for(let news of newsList) { %>
+                                <div class="max-w-sm rounded overflow-hidden shadow-lg border border-gray-500 relative">
+                                    <button data-newsid="<%- news.id %>" class="deleteButton absolute top-5 right-5 -ml-px  inline-flex items-center p-2 border border-red-300 bg-white text-sm font-medium text-red-700 hover:bg-red-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 rounded ">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                             stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                        </svg>
+                                    </button>
+                                    <img class="w-full" src="<%= news.images[0] %>" alt="Sunset in the mountains">
+                                    <div class="px-6 py-4">
+                                      <div class="font-bold text-xl mb-2"><%= news.titile  %></div>
+                                      <div class="text-gray-700 text-base text-ellipsis overflow-hidden h-20">
+                                        <%- news.text %>
+                                      </div>
+                                    </div>
+                                    <div class="px-6 pt-4 pb-2">
+                                      <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#<%= news.type %></span>
+                                    </div>
+                                  </div>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/editor.js" type="module"></script>
+
+
+</body>
+</html>
