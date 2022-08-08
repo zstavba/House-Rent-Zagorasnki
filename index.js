@@ -62,6 +62,7 @@ app.get("/dashboard", Dashboard.home);
 app.get("/dashboard/user/settings", Dashboard.userSettings);
 app.post("/dashboard/user/update/profile", upload.single("file"), Dashboard.updateProfilePicture);
 app.post("/dashboard/user/update/information", Dashboard.updateBasicInformation);
+app.post("/dashboard/user/create/credit", Dashboard.createCard);
 /* News Template  WITH (POST,PUT,GET, DELETE)  */
 app.get("/dashboard/news", News.home);
 app.post('/dashboard/news/create', upload.array("files", 15), News.create);
@@ -72,6 +73,7 @@ tes  WITH (POST,PUT,GET, DELETE)   */
 app.get("/dashboard/booking", Booking.home);
 app.get("/dashboard/booking/orders", Booking.orders);
 app.get("/dashboard/booking/orders/:id", Booking.orderView);
+app.post("/dashboard/booking/create", upload.array("files", 14), Booking.create);
 module.exports = router;
 app.use((0, cors_1.default)());
 app.listen(3000, function () { return console.log("Listening on port 3000"); });

@@ -3,14 +3,18 @@ import { basename } from 'path';
 
 
 import UserObject from '../classes/UserObject';
+import CreditCards from '../models/CreditCards';
 import User from '../models/User';
 
 
 class DashboardController {
     user = new User();
+    creditCard = new CreditCards();
+
     home = async  (req: any, res: any, next : any) => {
         if(req.session.user != undefined) {
             let findUser = await  this.user.get(req.session.user.id);
+
             res.render("dashboard/home",{baseUrl: res.baseUrl, userData: findUser});    
         }else{
             res.redirect("/");
@@ -20,7 +24,8 @@ class DashboardController {
     userSettings = async  (req:any, res: any, next: any) => {
         if(req.session.user != undefined) {
             let findUser = await  this.user.get(req.session.user.id);
-            res.render("dashboard/userSettings",{baseUrl: res.baseUrl, userData: findUser});    
+            let getCard = await this.creditCard.get(req.session.user.id);
+            res.render("dashboard/userSettings",{baseUrl: res.baseUrl, userData: findUser, card: getCard});    
         }else{
             res.redirect("/");
         }
@@ -96,6 +101,32 @@ class DashboardController {
             res.status(200).json({
                 message: "Vaši podatki so bili uspešno posodobljeni."
             });
+
+        } catch(error) {
+            res.status(400).json({
+                message: error.message
+            });
+        }
+    }
+
+    createCard = async (req: any, res: any, next: any) => {
+        try {
+            if(req.session.user == undefined)
+                throw new Error("Vaša seja je potekla, prosimo vas, da se ponovno prijavite !");
+
+             var userID = req.session.user.id;
+             var data = req.body;   
+            
+             let createCard:any = await this.creditCard.create(userID,data);
+
+             if(createCard.saved == false)
+                    throw new Error(createCard.message);
+             
+
+             res.status(200).json({
+                message: "Vaša kreditna kartica je bila uspešno shranjena !"
+             });
+            
 
         } catch(error) {
             res.status(400).json({

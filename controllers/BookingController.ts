@@ -32,6 +32,11 @@ class BookingCotnroller {
         }   
     }
 
+
+    create = async (req:any, res: any, next: any) => {
+        
+    }
+
 }
 
 export default BookingCotnroller;

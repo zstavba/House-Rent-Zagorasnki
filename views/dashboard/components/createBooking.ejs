@@ -1,0 +1,82 @@
+<div class="relative z-10 visible" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+      <div class="fixed z-10 inset-0 overflow-y-auto">
+          <div class="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0">
+          <div class="relative bg-white rounded-lg p-2 text-left overflow-hidden shadow-xl transform transition-all sm:w-3/5 w-full">
+            <!-- This example requires Tailwind CSS v2.0+ -->
+            <ul class="stepper h-a" data-mdb-stepper="stepper">
+                <li class="stepper-step stepper-active">
+                  <div class="stepper-head">
+                    <span class="stepper-head-icon"> 1 </span>
+                    <span class="stepper-head-text"> Osnovni podatki</span>
+                  </div>
+                  <div class="stepper-content">
+                    <div>
+                        <label for="apartment_name" class="block text-sm font-medium text-gray-700">Ime nastanitve</label>
+                        <div class="mt-1">
+                          <input type="text" name="apartment_name" id="apartment_name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Vnesite ime nastanitve ..." />
+                        </div>
+                      </div>
+                      <div class="block my-2 font-medium text-gray-700">Kje se nahaja vaša nastanitev ?</div>
+                      <div class="grid sm:grid-cols-2 grid-cols-1 gap-4">
+                          <div>
+                            <label for="apartment_country" class="block text-sm font-medium text-gray-700">Država</label>
+                            <select id="apartment_country" name="apartment_country" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                              <option selected>Izberite državo</option>
+                              <option value="Slovenija">Slovenija</option>
+                              <option value="Hrvaška">Hrvaška</option>
+                              <option value="Avstrija">Avstrija</option>
+                              <option value="Italija">Italija</option>
+                              <option value="Madžarska">Madžarska</option>
+                            </select>
+                          </div>
+                          <div>
+                            <label for="apartment_town" class="block text-sm font-medium text-gray-700">Ime ulice in Hišna Številka</label>
+                            <div class="mt-1">
+                              <input type="text" name="apartment_town" id="apartment_town" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Example: Mestna Ulica 16 B" />
+                            </div>
+                          </div>
+                      </div>
+                      <div class="grid sm:grid-cols-2 grid-cols-1 gap-4 my-2">
+                          <div>
+                            <label for="apartment_zip_code" class="block text-sm font-medium text-gray-700">Poštna številka</label>
+                            <div class="mt-1">
+                              <input type="text" name="apartment_zip_code" id="apartment_zip_code" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Example: 2313" />
+                            </div>
+                          </div>
+                          <div>
+                            <label for="apartment_city" class="block text-sm font-medium text-gray-700">Mesto</label>
+                            <div class="mt-1">
+                              <input type="text" name="apartment_city" id="apartment_city" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Example: Maribor" />
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                </li>
+                <li class="stepper-step">
+                  <div class="stepper-head">
+                    <span class="stepper-head-icon"> 2 </span>
+                    <span class="stepper-head-text"> Sobe in okolica </span>
+                  </div>
+                  <div class="stepper-content">
+                        <div class="py-1.5 text-xl text-blue-700">
+                            Kakšna ležišča se nahajajo v različnih sobah ?  
+                        </div>
+                  </div>
+                </li>
+                <li class="stepper-step">
+                  <div class="stepper-head">
+                    <span class="stepper-head-icon"> 3 </span>
+                    <span class="stepper-head-text"> Slike in opis </span>
+                  </div>
+                  <div class="stepper-content">
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                  </div>
+                </li>
+            </ul>
+
+  
+        </div>
+      </div>
+    </div>
+  </div>

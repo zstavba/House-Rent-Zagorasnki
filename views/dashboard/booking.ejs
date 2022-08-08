@@ -2,12 +2,14 @@
 <html>
 <head>
     <title>House Rent zagoranski / Admin </title>
-    <link rel="stylesheet" href="/css/tailwind.css">
+    <link rel="stylesheet" href="/output.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="/js/index.js" type="module" ></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body  style="background-color:#e9eaed ;">
     <%- include('./components/navbar', {user:  userData}) %>
+    <%- include('./components/createBooking') %>
     <div aria-live="assertive" class="fixed inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start z-50 successMessage hidden">
         <div class="w-full flex flex-col items-center space-y-4 sm:items-end">
           <div class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
@@ -70,7 +72,6 @@
         <div class="grid sm:grid-cols-5 grid-cols-1">
             <%- include('./components/sidebar')  %>
             <div class="col-span-4">
-                <%- include('./components/createNews') %>
                 <div class="dashboardColor bg-gray-800 h-40 w-full">
                     <div class="grid grid-cols-2 py-4 sm:px-8 px-2">
                         <div class="text-white text-4xl py-1.5">Booking List</div>

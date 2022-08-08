@@ -14,10 +14,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = __importDefault(require("fs"));
 const path_1 = require("path");
+const CreditCards_1 = __importDefault(require("../models/CreditCards"));
 const User_1 = __importDefault(require("../models/User"));
 class DashboardController {
     constructor() {
         this.user = new User_1.default();
+        this.creditCard = new CreditCards_1.default();
         this.home = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             if (req.session.user != undefined) {
                 let findUser = yield this.user.get(req.session.user.id);
@@ -30,7 +32,8 @@ class DashboardController {
         this.userSettings = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             if (req.session.user != undefined) {
                 let findUser = yield this.user.get(req.session.user.id);
-                res.render("dashboard/userSettings", { baseUrl: res.baseUrl, userData: findUser });
+                let getCard = yield this.creditCard.get(req.session.user.id);
+                res.render("dashboard/userSettings", { baseUrl: res.baseUrl, userData: findUser, card: getCard });
             }
             else {
                 res.redirect("/");
@@ -94,6 +97,25 @@ class DashboardController {
                 }));
                 res.status(200).json({
                     message: "Vaši podatki so bili uspešno posodobljeni."
+                });
+            }
+            catch (error) {
+                res.status(400).json({
+                    message: error.message
+                });
+            }
+        });
+        this.createCard = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                if (req.session.user == undefined)
+                    throw new Error("Vaša seja je potekla, prosimo vas, da se ponovno prijavite !");
+                var userID = req.session.user.id;
+                var data = req.body;
+                let createCard = yield this.creditCard.create(userID, data);
+                if (createCard.saved == false)
+                    throw new Error(createCard.message);
+                res.status(200).json({
+                    message: "Vaša kreditna kartica je bila uspešno shranjena !"
                 });
             }
             catch (error) {

@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>House Rent zagoranski / Admin </title>
-    <link rel="stylesheet" href="/css/tailwind.css">
+    <link rel="stylesheet" href="/output.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="/js/userSettings.js"></script>
@@ -185,9 +185,15 @@
                                 </div>
                             </div>
                             <div class="grid grid-cols-2 gap-4">
-                                <button type="button" class="text-center saveData px-4 py-2 border border-transparent text-sm font-medium rounded-md text-green-700 bg-green-100 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                    Shrani 
+                              <% if(userData != undefined) { %>
+                                <button type="button" class="text-center saveData px-4 py-2 border border-transparent text-sm font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                  Posodobi 
                                 </button>
+                              <% } else { %>
+                                <button type="button" class="text-center saveData px-4 py-2 border border-transparent text-sm font-medium rounded-md text-green-700 bg-green-100 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                  Shrani 
+                                </button>
+                              <% } %>
                                 <button type="button" class="text-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                     Prekliči
                                 </button>
@@ -196,12 +202,12 @@
                     </div>
                 </div>
                 <div class="sm:px-10 px-4  grid grid-cols-2 gap-4 my-4">
-                    <div class="bg-white rounded">
+                    <div class="bg-white rounded h-a">
                         <div class="p-3 border-b border-gray-500 text-gray-700 font-bold text-xl">
                             Sprememba gesla
                         </div>
-                        <div class="p-3">
-                            <div class="grid grid-cols-2 gap-4 my-2">
+                        <div class="p-3.5">
+                            <div class="grid grid-cols-2 gap-4 my-8">
                                 <div>
                                     <label for="old_password" class="block text-sm font-medium text-gray-700">Staro geslo</label>
                                     <div class="mt-1">
@@ -215,7 +221,7 @@
                                     </div>
                                   </div>
                             </div>
-                            <div>
+                            <div class="my-8">
                                 <label for="new_password_repeat" class="block text-sm font-medium text-gray-700">Ponovno vnesi novo geslo</label>
                                 <div class="mt-1">
                                   <input type="password" name="new_password_repeat" id="new_password_repeat" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm p-2 border border-gray-300 rounded-md" placeholder="Za potrditev vnesite ponovno vaše novo geslo">
@@ -241,16 +247,16 @@
                               <div class="mt-1 bg-white rounded-md shadow-sm -space-y-px">
                                 <div>
                                   <label for="card-number" class="sr-only">Card number</label>
-                                  <input type="text" name="card-number" id="card-number" class="focus:ring-indigo-500 focus:border-indigo-500 relative block w-full rounded-none rounded-t-md bg-transparent focus:z-10 sm:text-sm p-2 border border-gray-300" placeholder="Card number">
+                                  <input type="text" name="card-number" id="card-number" value="<%- card.card_number %>"  class="card_number focus:ring-indigo-500 focus:border-indigo-500 relative block w-full rounded-none rounded-t-md bg-transparent focus:z-10 sm:text-sm p-2 border border-gray-300" placeholder="Card number">
                                 </div>
                                 <div class="flex -space-x-px">
                                   <div class="w-1/2 flex-1 min-w-0">
                                     <label for="card-expiration-date" class="sr-only">Expiration date</label>
-                                    <input type="text" name="card-expiration-date" id="card-expiration-date" class="focus:ring-indigo-500 focus:border-indigo-500 relative block w-full rounded-none rounded-bl-md bg-transparent focus:z-10 sm:text-sm p-2 border border-gray-300" placeholder="MM / YY">
+                                    <input type="text" name="card-expiration-date" id="card-expiration-date" value="<%- card.card_experation_date %>"  class="card_experation_date focus:ring-indigo-500 focus:border-indigo-500 relative block w-full rounded-none rounded-bl-md bg-transparent focus:z-10 sm:text-sm p-2 border border-gray-300" placeholder="MM / YY">
                                   </div>
                                   <div class="flex-1 min-w-0">
                                     <label for="card-cvc" class="sr-only">CVC</label>
-                                    <input type="text" name="card-cvc" id="card-cvc" class="focus:ring-indigo-500 focus:border-indigo-500 relative block w-full rounded-none rounded-br-md bg-transparent focus:z-10 sm:text-sm p-2 border border-gray-300" placeholder="CVC">
+                                    <input type="text" name="card-cvc" id="card-cvc"  value="<%- card.card_cvc %>" class="card_cvc focus:ring-indigo-500 focus:border-indigo-500 relative block w-full rounded-none rounded-br-md bg-transparent focus:z-10 sm:text-sm p-2 border border-gray-300" placeholder="CVC">
                                   </div>
                                 </div>
                               </div>
@@ -260,23 +266,31 @@
                               <div class="mt-1 rounded-md shadow-sm -space-y-px">
                                 <div>
                                   <label for="country" class="sr-only">Country</label>
-                                  <select id="country" name="country" autocomplete="country-name" class="focus:ring-indigo-500 focus:border-indigo-500 relative block w-full rounded-none rounded-t-md bg-transparent focus:z-10 sm:text-sm p-2 border border-gray-300">
-                                    <option>United States</option>
-                                    <option>Canada</option>
-                                    <option>Mexico</option>
+                                  <select id="country" name="country" autocomplete="country-name" class="card_country focus:ring-indigo-500 focus:border-indigo-500 relative block w-full rounded-none rounded-t-md bg-transparent focus:z-10 sm:text-sm p-2 border border-gray-300">
+                                    <option selected>Izberite državo !</option>
+                                    <option value="Slovenija">Slovenija</option>
+                                    <option value="Avstrija">Avstrija</option>
+                                    <option value="Hrvaška">Hrvaška</option>
+                                    <option value="Italije">Italija</option>
                                   </select>
                                 </div>
                                 <div>
-                                  <label for="postal-code" class="sr-only">ZIP / Postal code</label>
-                                  <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code" class="focus:ring-indigo-500 focus:border-indigo-500 relative block w-full rounded-none rounded-b-md bg-transparent focus:z-10 sm:text-sm p-2 border border-gray-300" placeholder="ZIP / Postal code">
+                                  <label for="postal-code" class="sr-only">Domači naslov</label>
+                                  <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code" value="<%- card.card_home_adress %>" class="card_home_adress focus:ring-indigo-500 focus:border-indigo-500 relative block w-full rounded-none rounded-b-md bg-transparent focus:z-10 sm:text-sm p-2 border border-gray-300" placeholder="Vnesite vaš domači naslov !">
                                 </div>
                               </div>
                             </fieldset>
                           </div>     
                         <div class="grid grid-cols-2 gap-4 p-3">
-                            <button type="button" class="text.center  px-4 py-2 border border-transparent text-sm font-medium rounded-md text-green-700 bg-green-100 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                Shrani 
+                          <% if(card != undefined) { %>
+                            <button type="button" class="text-center updateCard px-4 py-2 border border-transparent text-sm font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                              Posodobi 
                             </button>
+                          <% } else { %>
+                            <button type="button" class="text-center saveCard px-4 py-2 border border-transparent text-sm font-medium rounded-md text-green-700 bg-green-100 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                              Shrani 
+                            </button>
+                          <% } %>
                             <button type="button" class="text-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 Prekliči
                             </button>

@@ -72,4 +72,38 @@ $(document).ready(() => {
 
     });
 
+
+    $('.saveCard').click(() => {
+        let cardData = new FormData();
+        cardData.append("card_number", $('.card_number').val());
+        cardData.append("card_experation_date", $('.card_experation_date').val());
+        cardData.append("card_cvc", $('.card_cvc').val());
+        cardData.append("card_country", $('.card_country option:selected').val());
+        cardData.append("card_home_adress", $('.card_home_adress').val());
+
+        $.ajax({
+            method:"POST",
+            url: "/dashboard/user/create/credit",
+            data: Object.fromEntries(cardData),
+            processData: true,
+            "content-type": "application/json",
+            dataType: "json",
+            error: (result) => {
+                $('.errorNotification').fadeIn();
+                $('.error_message').html(result.responseJSON.message);
+            }
+        }).done(
+            (result) => {
+                $('.successMessage').fadeIn();
+                $('.successMessage .sm-text').html(result.message);
+
+                setTimeout(() => {
+                    $('.successMessage').fadeOut();
+                    $('.successMessage .sm-text').html("");
+    
+                },4000);
+            }
+        );
+    });
+
 });

@@ -1,7 +1,8 @@
 module.exports = {
   content: [
     "./src/*.{html,js,css}",
-    './views/**/*.{ejs}'
+    './views/**/*.ejs',
+    './node_modules/tw-elements/dist/js/**/*.js'
   ],
   theme: {
     extend: {},
@@ -9,6 +10,7 @@ module.exports = {
   plugins: [
     require('@tailwindcss/forms'),
     require('tailwindcss'),
-    require('autoprefixer')
+    require('autoprefixer'),
+    require('tw-elements/dist/plugin')
   ]
 }
