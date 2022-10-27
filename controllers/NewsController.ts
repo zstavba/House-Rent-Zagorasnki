@@ -104,6 +104,7 @@ class NewsController {
                 let getAlbum = await album.get(post.album_id);
 
                 var data: any = {
+                    id: post.id,
                     title: post.title,
                     type: post.news_type,
                     description: post.description,

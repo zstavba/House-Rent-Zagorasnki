@@ -28,6 +28,16 @@ class User {
             });
             return userData;
         });
+        this.getByData = (email) => {
+            return new Promise((resolve, reject) => {
+                var getUser = `SELECT * FROM users WHERE email = '${email}'`;
+                this.setConnection.query(getUser, (error, rows, fields) => {
+                    if (error)
+                        return reject(error);
+                    return resolve(rows);
+                });
+            });
+        };
         this.updateProfile = (userID, imagePath) => {
             return new Promise((resolve, reject) => {
                 var updateQuery = `UPDATE users SET profile_image = '${imagePath}' WHERE id = ${userID}`;
@@ -45,6 +55,17 @@ class User {
                     if (error)
                         return reject({ updated: false, message: error });
                     return resolve({ updated: true, message: "OK" });
+                });
+            });
+        };
+        this.create = (params) => {
+            return new Promise((resolve, reject) => {
+                var createQuery = `INSERT INTO users (first_name,last_name,email,phone_number,home_address) VALUES('${params.first_name}','${params.last_name}','${params.rent_email}','${params.phone_number}','${params.home_address}')`;
+                this.setConnection.query(createQuery, (error, rows, fields) => {
+                    if (error)
+                        return reject({ saved: false, message: error });
+                    /* We need the ID for the database later on !  */
+                    return resolve({ saved: true, message: rows.insertId });
                 });
             });
         };

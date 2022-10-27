@@ -1,80 +1,321 @@
-<div class="relative z-10 visible" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-      <div class="fixed z-10 inset-0 overflow-y-auto">
-          <div class="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0">
-          <div class="relative bg-white rounded-lg p-2 text-left overflow-hidden shadow-xl transform transition-all sm:w-3/5 w-full">
-            <!-- This example requires Tailwind CSS v2.0+ -->
-            <ul class="stepper h-a" data-mdb-stepper="stepper">
-                <li class="stepper-step stepper-active">
-                  <div class="stepper-head">
-                    <span class="stepper-head-icon"> 1 </span>
-                    <span class="stepper-head-text"> Osnovni podatki</span>
-                  </div>
-                  <div class="stepper-content">
-                    <div>
-                        <label for="apartment_name" class="block text-sm font-medium text-gray-700">Ime nastanitve</label>
-                        <div class="mt-1">
-                          <input type="text" name="apartment_name" id="apartment_name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Vnesite ime nastanitve ..." />
-                        </div>
-                      </div>
-                      <div class="block my-2 font-medium text-gray-700">Kje se nahaja vaša nastanitev ?</div>
-                      <div class="grid sm:grid-cols-2 grid-cols-1 gap-4">
-                          <div>
-                            <label for="apartment_country" class="block text-sm font-medium text-gray-700">Država</label>
-                            <select id="apartment_country" name="apartment_country" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                              <option selected>Izberite državo</option>
-                              <option value="Slovenija">Slovenija</option>
-                              <option value="Hrvaška">Hrvaška</option>
-                              <option value="Avstrija">Avstrija</option>
-                              <option value="Italija">Italija</option>
-                              <option value="Madžarska">Madžarska</option>
-                            </select>
-                          </div>
-                          <div>
-                            <label for="apartment_town" class="block text-sm font-medium text-gray-700">Ime ulice in Hišna Številka</label>
-                            <div class="mt-1">
-                              <input type="text" name="apartment_town" id="apartment_town" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Example: Mestna Ulica 16 B" />
-                            </div>
-                          </div>
-                      </div>
-                      <div class="grid sm:grid-cols-2 grid-cols-1 gap-4 my-2">
-                          <div>
-                            <label for="apartment_zip_code" class="block text-sm font-medium text-gray-700">Poštna številka</label>
-                            <div class="mt-1">
-                              <input type="text" name="apartment_zip_code" id="apartment_zip_code" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Example: 2313" />
-                            </div>
-                          </div>
-                          <div>
-                            <label for="apartment_city" class="block text-sm font-medium text-gray-700">Mesto</label>
-                            <div class="mt-1">
-                              <input type="text" name="apartment_city" id="apartment_city" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Example: Maribor" />
-                            </div>
-                          </div>
-                      </div>
-                  </div>
-                </li>
-                <li class="stepper-step">
-                  <div class="stepper-head">
-                    <span class="stepper-head-icon"> 2 </span>
-                    <span class="stepper-head-text"> Sobe in okolica </span>
-                  </div>
-                  <div class="stepper-content">
-                        <div class="py-1.5 text-xl text-blue-700">
-                            Kakšna ležišča se nahajajo v različnih sobah ?  
-                        </div>
-                  </div>
-                </li>
-                <li class="stepper-step">
-                  <div class="stepper-head">
-                    <span class="stepper-head-icon"> 3 </span>
-                    <span class="stepper-head-text"> Slike in opis </span>
-                  </div>
-                  <div class="stepper-content">
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                  </div>
-                </li>
-            </ul>
 
+<div class="opacitiy-0 relative bookingModal" id="bookingModal" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 opacitiy-0  hidden-opacity hidden"></div>
+      <div class="fixed inset-0 overflow-y-auto">
+          <div class="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0">
+          <div class="bm-content opacity-0 relative bg-white rounded-lg p-2 text-left overflow-hidden shadow-xl transform transition-all sm:w-3/5 w-full">
+            <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+                <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalLabel">Ustvarite nov apartma</h5>
+                <button type="button"
+                class="closeBookingModal btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+                data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="bookingForm">
+                <!-- This example requires Tailwind CSS v2.0+ -->
+                <ul class="stepper" id="stepper" data-mdb-stepper="stepper">
+                    <li class="stepper-step stepper-active">
+                    <div class="stepper-head">
+                        <span class="stepper-head-icon"> 1 </span>
+                        <span class="stepper-head-text"> Osnovni podatki</span>
+                    </div>
+                    <div class="stepper-content">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="apartment_name" class="block text-sm font-medium text-gray-700">Ime nastanitve</label>
+                                <div class="mt-1">
+                                <input type="text" name="apartment_name" id="apartment_name" class="apartment_name shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Vnesite ime nastanitve ..." />
+                                </div>
+                            </div>
+                            <div>
+                                <label for="apartment_price" class="block text-sm font-medium text-gray-700">Cena apartmaja</label>
+                                <div class="mt-1">
+                                <input type="text" name="apartment_price" id="apartment_price" class="apartment_price shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Vnesite ceno apartmaja na dan ..." />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="block my-2 font-medium text-gray-700">Kje se nahaja vaša nastanitev ?</div>
+                        <div class="grid sm:grid-cols-2 grid-cols-1 gap-4">
+                            <div>
+                                <label for="apartment_country" class="block text-sm font-medium text-gray-700">Država</label>
+                                <select id="apartment_country" name="apartment_country" class="apartment_country mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                <option selected>Izberite državo</option>
+                                <option value="Slovenija">Slovenija</option>
+                                <option value="Hrvaška">Hrvaška</option>
+                                <option value="Avstrija">Avstrija</option>
+                                <option value="Italija">Italija</option>
+                                <option value="Madžarska">Madžarska</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="apartment_town" class="block text-sm font-medium text-gray-700">Ime ulice in Hišna Številka</label>
+                                <div class="mt-1">
+                                <input type="text" name="apartment_town" id="apartment_town" class="apartment_town shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Example: Mestna Ulica 16 B" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid sm:grid-cols-2 grid-cols-1 gap-4 my-2">
+                            <div>
+                                <label for="apartment_zip_code" class="block text-sm font-medium text-gray-700">Poštna številka</label>
+                                <div class="mt-1">
+                                <input type="text" name="apartment_zip_code" id="apartment_zip_code" class="apartment_zip_code shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Example: 2313" />
+                                </div>
+                            </div>
+                            <div>
+                                <label for="apartment_city" class="block text-sm font-medium text-gray-700">Mesto</label>
+                                <div class="mt-1">
+                                <input type="text" name="apartment_city" id="apartment_city" class="apartment_city shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Example: Maribor" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </li>
+                    <li class="stepper-step">
+                    <div class="stepper-head">
+                        <span class="stepper-head-icon"> 2 </span>
+                        <span class="stepper-head-text"> Storitve </span>
+                    </div>
+                    <div class="stepper-content">
+                            <div class="py-1.5 text-xl text-blue-700">
+                                Kakšna ležišča se nahajajo v različnih sobah ?  
+                            </div>
+                            <div class="p-2 grid sm:grid-cols-2 gap-4 my-2">
+                                <div class="grid sm:grid-cols-3 gap-4 w-full bg-gray-100 rounded px-3 py-2 shadow shadow-gray-700/20">
+                                    <div class="flex items-left col-span-2">
+                                        <Image src="/images/icons/single-bed.png" width="40" height="40"/>
+                                        <div class="px-5">
+                                            <div>Enojna postelja</div>
+                                            <div class="text-xs">Širine 90–130 cm</div>	
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
+                                    <button type="button" class="ep_minus bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none">
+                                        <span class="m-auto text-2xl font-thin">−</span>
+                                    </button>
+                                    <input type="number" value="" class="apartment_one_bed outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black border-0  md:text-basecursor-default flex items-center text-gray-700  outline-none" name="custom-input-number" value="0"></input>
+                                    <button type="button" class="ep_plus bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer">
+                                        <span class="m-auto text-2xl font-thin">+</span>
+                                    </button>
+                                </div>
+                                </div>
+                                <div class="grid sm:grid-cols-3 gap-4 w-full bg-gray-100 rounded px-3 py-2 shadow shadow-gray-700/20">
+                                    <div class="flex items-left col-span-2">
+                                        <Image src="/images/icons/bed.png" width="40" height="40"/>
+                                        <div class="px-5">
+                                            <div>Zakonska postelja</div>
+                                            <div class="text-xs">Širine 131–150 cm</div>	
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
+                                    <button type="button" class="zp_minus bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none">
+                                        <span class="m-auto text-2xl font-thin">−</span>
+                                    </button>
+                                    <input type="number" value="" class="apartment_marriage outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black border-0  md:text-basecursor-default flex items-center text-gray-700  outline-none" name="custom-input-number" value="0"></input>
+                                    <button type="button" class="zp_plus bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer">
+                                        <span class="m-auto text-2xl font-thin">+</span>
+                                    </button>
+                                </div>
+                                </div>
+        
+                            </div>
+                            <div class="p-2 grid sm:grid-cols-2 gap-4 my-2">
+                                <div class="grid sm:grid-cols-3 gap-4 w-full bg-gray-100 rounded px-3 py-2 shadow shadow-gray-700/20">
+                                    <div class="flex items-left col-span-2">
+                                        <Image src="/images/icons/bed.png" width="40" height="40"/>
+                                        <div class="px-5">
+                                            <div>Velika zakonska postelja</div>
+                                            <div class="text-xs">Širine 151–180 cm</div>	
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
+                                    <button type="button" class="amb_minus bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none">
+                                        <span class="m-auto text-2xl font-thin">−</span>
+                                    </button>
+                                    <input type="number" class="apartment_marriage_big outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black border-0  md:text-basecursor-default flex items-center text-gray-700  outline-none" name="custom-input-number" value="0"></input>
+                                    <button type="button" class="amb_plus bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer">
+                                        <span class="m-auto text-2xl font-thin">+</span>
+                                    </button>
+                                </div>
+                                </div>
+                                <div class="grid sm:grid-cols-3 gap-4 w-full bg-gray-100 rounded px-3 py-2 shadow shadow-gray-700/20">
+                                    <div class="flex items-left col-span-2">
+                                        <Image src="/images/icons/bed.png" width="40" height="40"/>
+                                        <div class="px-5">
+                                            <div class="truncate w-40">Kavč</div>
+                                            <div class="text-xs">Širine 181–210 cm</div>	
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
+                                    <button    type="button" class="k_set_minus bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none">
+                                        <span class="m-auto text-2xl font-thin">−</span>
+                                    </button>
+                                    <input type="number" value="" class="apartment_livingroom_choutch outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black border-0  md:text-basecursor-default flex items-center text-gray-700  outline-none" name="custom-input-number" value="0"></input>
+                                    <button type="button"  class="k_set_plus bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer">
+                                        <span class="m-auto text-2xl font-thin">+</span>
+                                    </button>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="py-1.5 text-xl text-blue-700">
+                                Kakšne storitve vam ponujamo ?  
+                            </div>
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div class="flex items-center justify-between">
+                                    <span class="flex-grow flex flex-col pr-5">
+                                        <span class="text-sm font-medium text-gray-900" id="availability-label">Ali je na voljo prakirišče</span>
+                                        <input type="text" name="parking_spot_description" id="parking_spot_description"  class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Vnesite kratko priporočilo !">
+                                    </span>
+                                    <!-- Enabled: "bg-indigo-600", Not Enabled: "bg-gray-200" -->
+                                    <button type="button" class="parking_spot bg-gray-200 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" role="switch" aria-checked="false" aria-labelledby="availability-label" aria-describedby="availability-description">
+                                    <!-- Enabled: "translate-x-5", Not Enabled: "translate-x-0" -->
+                                    <span aria-hidden="true" class="translate-x-0 pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"></span>
+                                    </button>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="flex-grow flex flex-col">
+                                    <span class="text-sm font-medium text-gray-900" id="availability-label">Ali je na voljo Brezžični internet ?</span>
+                                    <span class="text-sm text-gray-500" id="availability-description">Z klikom na gumb potrdite izbrizo. Drugače v osnovi ostane <span class="text-red-400 font-bold">false</span></span>
+                                    </span>
+                                    <!-- Enabled: "bg-indigo-600", Not Enabled: "bg-gray-200" -->
+                                    <button type="button" class="house_wifi bg-gray-200 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" role="switch" aria-checked="false" aria-labelledby="availability-label" aria-describedby="availability-description">
+                                    <!-- Enabled: "translate-x-5", Not Enabled: "translate-x-0" -->
+                                    <span aria-hidden="true" class="translate-x-0 pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"></span>
+                                    </button>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="flex-grow flex flex-col">
+                                    <span class="text-sm font-medium text-gray-900" id="availability-label">Ali so dovoljeni hišni ljubljenčki ?</span>
+                                    <span class="text-sm text-gray-500" id="availability-description">Z klikom na gumb potrdite izbrizo. Drugače v osnovi ostane <span class="text-red-400 font-bold">false</span></span>
+                                    </span>
+                                    <!-- Enabled: "bg-indigo-600", Not Enabled: "bg-gray-200" -->
+                                    <button type="button" class="house_pets bg-gray-200 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" role="switch" aria-checked="false" aria-labelledby="availability-label" aria-describedby="availability-description">
+                                    <!-- Enabled: "translate-x-5", Not Enabled: "translate-x-0" -->
+                                    <span aria-hidden="true" class="translate-x-0 pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"></span>
+                                    </button>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="flex-grow flex flex-col">
+                                    <span class="text-sm font-medium text-gray-900" id="availability-label">Ali je stanovanje dostopno tudi za invalide ?</span>
+                                    <span class="text-sm text-gray-500" id="availability-description">Z klikom na gumb potrdite izbrizo. Drugače v osnovi ostane <span class="text-red-400 font-bold">false</span></span>
+                                    </span>
+                                    <!-- Enabled: "bg-indigo-600", Not Enabled: "bg-gray-200" -->
+                                    <button type="button" class="house_invalid_people bg-gray-200 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" role="switch" aria-checked="false" aria-labelledby="availability-label" aria-describedby="availability-description">
+                                    <!-- Enabled: "translate-x-5", Not Enabled: "translate-x-0" -->
+                                    <span aria-hidden="true" class="translate-x-0 pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"></span>
+                                    </button>
+                                </div>
+                            </div>
+                    </div>
+                    </li>
+                    <li class="stepper-step">
+                        <div class="stepper-head">
+                        <span class="stepper-head-icon"> 3 </span>
+                        <span class="stepper-head-text"> Oprema </span>
+                        </div>
+                        <div class="stepper-content">
+                            <div class=" grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <div class="text-blue-500 text-xl font-bold flex items-left">
+                                        <img src="/images/icons/room.png" class="w-12 h-12">
+                                        <span class="px-4 py-2.5">
+                                            Dnevna soba
+                                        </span>
+                                    </div>
+                                    <div class="dnevnaEditor w-full h-24 border border-gray-400 rounded my-3 p-2 text-gray-700" contenteditable="true" placeholder="Tukaj vnesite besedilo za določen prostor"></div>
+                                </div>
+                                <div>
+                                    <div class="text-blue-500 text-xl font-bold flex items-left">
+                                        <img src="/images/icons/bathroom.png" class="w-12 h-12">
+                                        <span class="px-4 py-2.5">
+                                            Kopalnica
+                                        </span>
+                                    </div>
+                                    <div class="kopalnicaEditor w-full h-24 border border-gray-400 rounded my-3 p-2 text-gray-700" contenteditable="true" placeholder="Tukaj vnesite besedilo za določen prostor"></div>
+                                </div>
+                                <div>
+                                    <div class="text-blue-500 text-xl font-bold flex items-left">
+                                        <img src="/images/icons/mountain.png" class="w-12 h-12">
+                                        <span class="px-4 py-2.5">
+                                            Na prostem
+                                        </span>
+                                    </div>
+                                    <div class="outsideEditor w-full h-24 border border-gray-400 rounded my-3 p-2 text-gray-700" contenteditable="true" placeholder="Tukaj vnesite besedilo za določen prostor"></div>
+                                </div>
+                                <div>
+                                    <div class="text-blue-500 text-xl font-bold flex items-left">
+                                        <img src="/images/icons/kitchen.png" class="w-12 h-12">
+                                        <span class="px-4 py-2.5">
+                                            Kuhinja
+                                        </span>
+                                    </div>
+                                    <div class="kitchenEditor w-full h-24 border border-gray-400 rounded my-3 p-2 text-gray-700" contenteditable="true" placeholder="Tukaj vnesite besedilo za določen prostor"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="stepper-step">
+                    <div class="stepper-head">
+                        <span class="stepper-head-icon"> 4 </span>
+                        <span class="stepper-head-text"> Slike in opis </span>
+                    </div>
+                    <div class="stepper-content">
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <div class="py-3 flex items-left text-blue-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                    </svg>
+                                    <span class="font-bold p-1">
+                                        Podajte podroben opis stanovanja
+                                    </span>
+                                </div>
+                                <div class="descriptionEditor w-full rounded border border-gray-500 h-40">
+                                    <div class="w-full border-b border-gray-500 listOfOptions p-2">
+                                        <button type="button" class=" toggleBold inline-flex items-center px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                            <img src="/images/icons/editor/bold.png" class="w-5 h-5">
+                                        </button>
+                                        <button type="button" class="inline-flex items-center px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                            <img src="/images/icons/editor/italic.png" class="w-5 h-5">
+                                        </button>
+                                        <button type="button" class="inline-flex items-center px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                            <img src="/images/icons/editor/underline.png" class="w-5 h-5">
+                                        </button>
+                                        <button type="button" class="inline-flex items-center px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                            <img src="/images/icons/editor/list.png" class="w-5 h-5">
+                                        </button>
+                                    </div>
+                                    <div class="deInit"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="py-3 flex items-left text-blue-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                    <span class="font-bold p-1">
+                                    Dodajte slike za vaš apartma
+                                    </span>
+                                </div>
+                                <label for="rent_images" type="button" class="flex items-left px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                    <span class="px-3 py-1">Izberite Slike !</span>
+                                </label>
+                                <input type="file" name="rent_images" id="rent_images" class="hidden" multiple="true">
+                                <div class="imagesPreview grid grid-cols-5 gap-4 my-3">
+                                    <img src="https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/343347727.jpg?k=c7c4fd749af7025d8a1ed30392453f20dfc5a0d16f70d3dc6743f4a35a97cd48&o=&hp=1" class="rounded">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 my-3">
+                            <button type="button" class=" createBooking text-center  px-4 py-2 border border-transparent text-sm font-medium rounded-md text-green-700 bg-green-100 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Shrani</button>
+                            <button type="button" class="text-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Prekliči</button>
+                        </div>
+
+                    </div>
+                    </li>
+                </ul>
+            </div>
   
         </div>
       </div>

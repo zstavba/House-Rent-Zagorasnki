@@ -26,7 +26,8 @@ class HomeController {
                     if (error) reject(error);
                     return resolve(JSON.parse(JSON.stringify(result[0])));
                 })
-            })
+            });
+
             let  User = data;
         
             const checkPassword = await bcrypt.compare(requestData.password,User.password);

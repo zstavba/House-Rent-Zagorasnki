@@ -121,15 +121,15 @@
                             <table class="table text-left">
                                 <tr>
                                     <th class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Naročilo ID #</th>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">11541689164</td>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%- orderInfo.order_id  %></td>
                                 </tr>
                                 <tr>
                                     <th class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Naziv naročila </th>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Hotel Malte – Astotel</td>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%- orderInfo.apartment.name %></td>
                                 </tr>
                                 <tr>
                                     <th class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Trajanje </th>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">5 Avgust 2022 - 15 Avgust 2022</td>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%- orderInfo.rent_from %> - <%- orderInfo.rent_to %></td>
                                 </tr>
                                 <tr>
                                     <th class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Ime naročnika </th>
@@ -137,10 +137,10 @@
                                         <a href="#" class="flex-shrink-0 group block">
                                             <div class="flex items-center">
                                               <div>
-                                                <img class="inline-block h-9 w-9 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                                                <img class="inline-block h-9 w-9 rounded-full" src="<%- orderInfo.user.profile %>" alt="">
                                               </div>
                                               <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900">Žan Stavbar</p>
+                                                <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900"><%= orderInfo.user.name %></p>
                                                 <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">Ogled profila</p>
                                               </div>
                                             </div>
@@ -149,31 +149,31 @@
                                 </tr>
                                 <tr>
                                     <th class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Email naročnika </th>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">zanstavbar057@gmail.com</td>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%- orderInfo.user.email %></td>
                                 </tr>
                                 <tr>
                                     <th class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Telefonska številka naročnika </th>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">+386 69 603 253</td>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%- orderInfo.user.phone_number %></td>
                                 </tr>
                                 <tr>
                                     <th class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Naslov naročnika </th>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Kopivnik 26B, 2313 Fram</td>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%- orderInfo.user.home_address %></td>
                                 </tr>
                                 <tr>
                                     <th class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Kraj naročnika </th>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Fram</td>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%- orderInfo.user.place %></td>
                                 </tr>
                                 <tr>
                                     <th class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Število odraslih </th>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">2</td>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%- orderInfo.rent_adults_number %></td>
                                 </tr>
                                 <tr>
                                     <th class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Število otrok </th>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1</td>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%- orderInfo.rent_childs_number %></td>
                                 </tr>
                                 <tr>
                                     <th class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Skupen izračun </th>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">950 €</td>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%- orderInfo.price_amount %> €</td>
                                 </tr>
                                 <tr>
                                     <th class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Način plačila </th>

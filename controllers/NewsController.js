@@ -98,6 +98,7 @@ class NewsController {
                     let album = new Album_1.default();
                     let getAlbum = yield album.get(post.album_id);
                     var data = {
+                        id: post.id,
                         title: post.title,
                         type: post.news_type,
                         description: post.description,

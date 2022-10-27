@@ -9,6 +9,6 @@
             "dom"
         ]
     },
-    "include": ["**/*.ts", "**/*.tsx","**/*.ejs", "**/*.ejs", "public/js/editor.js"],
+    "include": ["**/*.ts", "**/*.tsx","**/*.ejs", "**/*.ejs", "public/js/editor.js", "public/js/booking.js"],
     "exclude": ["node_modules"]
   }
